@@ -11,30 +11,33 @@ import 'rxjs/add/operator/map';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-  
+  data :any;
   users: GitUsers[] = [
     {
-    'name': 'Himanshu',
+    'login': 'Himanshu',
+    'avatar_url':'../../assets/user3.jpg',
     'url': 'Himanshu@april.biz',
-    'repo1': '1',
+    'repos_url': '1',
     'repo2' : '2'
     },
     {
-    'name': 'Mohit',
+    'login': 'Mohit',
+    'avatar_url':'../../assets/user1.jpg',
     'url': 'Mohit@april.biz',
-    'repo1': '1',
+    'repos_url': '1',
     'repo2' : '2'
     },
     {
 
-    'name': 'Ankur',
+    'login': 'Ankur',
+    'avatar_url':'../../assets/user3.jpg',
     'url': 'NA',
-    'repo1': '1',
+    'repos_url': '1',
     'repo2' : '2'
     }
 
   ];
-  singleUser: GitUsers = { name: '', url: '', repo1: '', repo2: ''};
+  singleUser: GitUsers = { login: '', url: '', repos_url: '', repo2: ''};
 
 
   constructor(private searchUser: SearchUserService) {
@@ -42,23 +45,28 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.searchUser.getUsers('himanshu2004m').subscribe((data: Response) => {
-        console.log('data', data);
-      }, function(error){
-        console.log(error);
-      });
+     this.searchUser.getUsers('himanshu2004m').subscribe((data: Response) => {
+         console.log('data', data);
+       }, function(error){
+         console.log(error);
+       });
 
   }
 
-  onSearch(text:String){
-
+  onSearch(event:Event,text:String){
+console.log(text);
     this.searchUser.getUsers(text).map(res => res).subscribe(users2 => {
       // set items to json response
-      this.users = res.items as GitUsers[];
-     // console.log(users2);
+
+     this.data = users2;
+     this.users= this.data.items;
+      console.log(this.data.items);
+      //event.stopPropagation();
       // initialize to page 1
       
     });
+    return false;
+
   }
   
 }
