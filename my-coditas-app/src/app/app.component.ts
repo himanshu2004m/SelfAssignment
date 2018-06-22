@@ -47,37 +47,37 @@ export class AppComponent implements OnInit {
   pager: any = {};
 
   // paged items
-  pagedItems: any[];
+  
   constructor(private searchUser: SearchUserService, private pagerService: PagerServiceService) { }
 
   ngOnInit() {
-    this.searchUser.getUsers('himanshu2004m').subscribe((data: Response) => {
-      console.log('data', data);
-    }, function (error) {
-      console.log(error);
+    this.searchUser.getUsers('himanshu').subscribe((users2: Response) => {
+       // set items to json response
+       this.data = users2;
+       // this.users = this.data.items;
+        this.setPage(1);
     });
 
   }
 
   onSearch(event: Event, text: String) {
-    console.log(text);
+    //console.log(text);
     this.searchUser.getUsers(text).subscribe(users2 => {
       // set items to json response
-
       this.data = users2;
-      this.users = this.data.items;
+     // this.users = this.data.items;
       this.setPage(1);
-      console.log(this.data.items.length);
+      //console.log(this.data.items);
       // event.stopPropagation();
       // initialize to page 1
-
     });
     return false;
 
   }
 
+  //for setting pagination
   setPage(page: number) {
-    console.log(page);
+   // console.log(page);
     if (page < 1 || page > this.pager.totalPages) {
            return;
           }
@@ -87,6 +87,38 @@ export class AppComponent implements OnInit {
 
     // get current page of items
     this.pagedItems = this.data.items.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    console.log(this.pagedItems)
+    //console.log(this.pagedItems)
   }
+
+
+//for changing of sort option
+onSortChange(mysort:HTMLSelectElement){
+  //console.log(mysort.value);
+  switch(mysort.value) {
+    case 'Sort by Score ↑':
+    this.pagedItems.sort(this.dynamicSort('score'));
+        break;
+    case 'Sort by Score ↓':
+    this.pagedItems.sort(this.dynamicSort('-score'));
+
+        break;
+    default:
+    this.pagedItems.sort(this.dynamicSort('score'));
+}
+}
+ dynamicSort(property) {
+  var sortOrder = 1;
+  //console.log(property+1111);
+  if(property[0] === "-") {
+      sortOrder = -1;
+      property = property.substr(1);
+     // console.log(property+22222);
+  }
+  return function (a,b) {
+      var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+     // console.log(result+'him');
+      //console.log(result * sortOrder+'ra');
+      return result * sortOrder;
+  }
+}
 }

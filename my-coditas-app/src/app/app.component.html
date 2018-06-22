@@ -14,14 +14,14 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <select class="form-control" id="sel1">
-                                <option>Sort by Name(A-Z)</option>
-                                <option>Sort by Name(Z-A)</option>
-                                <option>Sort by Rank
-                                    <b>&#8593;</b>
+                            <select #mySort class="form-control" id="sel1" (change)="onSortChange(mySort)">
+                                
+                                <option>Sort by Score
+                                        <b>&#8595;</b>
                                 </option>
-                                <option>Sort by Rank
-                                    <b>&#8595;</b>
+                                <option>Sort by Score
+                                    
+                                    <b>&#8593;</b>
                                 </option>
                             </select>
                         </div>

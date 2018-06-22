@@ -28,7 +28,7 @@ export class UserCardComponent implements OnInit {
       // set items to json response
 
      this.reposArray = repos;
-     console.log(this.reposArray[0].name);
+    // console.log(this.reposArray[0].name);
     });
 
 
