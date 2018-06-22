@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="input-group" style="margin-left:40px;">
-                            <input #input type="text" class="form-control" 
+                            <input #input type="text" (keyup)="onSearch($event,input.value)" class="form-control" 
                                   placeholder="Search" id="txtSearch" style="padding-right:35px"/>
                             <button class="btn input-btnx" (click)="onSearch($event,input.value)">
                                 <span class="glyphicon glyphicon-search"></span>
@@ -42,6 +42,29 @@
     </div>
 </nav>
 <div class="well" style="padding-top:0%;overflow:hidden;margin-top:5%">
-    <app-user-card *ngFor = "let user of users; let i= index" [user] = "user"></app-user-card>
+    <app-user-card *ngFor = "let user of pagedItems; let i= index" [user] = "user"></app-user-card>
     
 </div>
+<div class="row">
+        <div class="col-sm-12" style="text-align:center">
+          <!-- pager -->
+          <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+              <a (click)="setPage(1)">First</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+              <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+            </li>
+            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+              <a (click)="setPage(page)">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a (click)="setPage(pager.currentPage + 1)">Next</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a (click)="setPage(pager.totalPages)">Last</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
