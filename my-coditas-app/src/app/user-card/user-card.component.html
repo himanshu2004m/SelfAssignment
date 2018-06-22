@@ -1,25 +1,34 @@
 <div class="container" style="padding:1%">
   <div class="row" style="height:150px;overflow:auto;
  ">
-    <div class="col-sm-2" style="background-color:blue ;height: inherit ; float:left; padding: 25px 0px 25px 13px;" >
+    <div class="col-sm-2" style="background-color:white ;height: inherit ; float:left; padding: 25px 0px 25px 13px;" >
       <img src="{{user.avatar_url}}" alt="..." style="width:100px;border-radius:50%">
       
     </div>
-    <div class="col-sm-8" style="height:inherit;background-color:red;float:left;">
+    <div class="col-sm-8" style="height:inherit;background-color:white;float:left;">
       <h2>{{user.login}}</h2>
       <h4>{{user.url}}</h4>
       <p>{{user.repo1}}</p>
       <p>{{user.repo2}}</p>
 
     </div>
-    <div class="col-sm-2" style="height:inherit;background-color:yellow ;float:right;">
+    <div class="col-sm-2" style="height:inherit;background-color:white ;float:right;">
       <button type="button" (click)="detailsClicked()" class="btn border2" style="margin-top: 50%;
       width: 100%;">Details</button>
     </div>
   </div>
   <div *ngIf="show" class="row" >
-    
-    <div *ngFor="let singleRepo of reposArray, let index = i " class="col-sm-12"  style="background-color:red ;height:inherit;">
+      <div class="col-sm-12"  style="background-color:white ;height:inherit;">
+          <hr>
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4"><h4><b>Repository Name</b></h4></div>
+          <div class="col-sm-2"></div>
+          <div class="col-sm-2"><h4><b>Language</b></h4></div>
+          <div class="col-sm-2"></div>
+        </div>
+
+    <div *ngFor="let singleRepo of reposArray, let index = i " class="col-sm-12"  style="background-color:white ;height:inherit;">
+      <hr>
       <div class="col-sm-2"></div>
       <div class="col-sm-4"><p>{{singleRepo.name}}</p></div>
       <div class="col-sm-2"></div>
