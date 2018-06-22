@@ -11,18 +11,18 @@ import 'rxjs/add/operator/map';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-  data :any;
+  data: any;
   users: GitUsers[] = [
     {
     'login': 'Himanshu',
-    'avatar_url':'../../assets/user3.jpg',
+    'avatar_url': '../../assets/user3.jpg',
     'url': 'Himanshu@april.biz',
     'repos_url': '1',
     'repo2' : '2'
     },
     {
     'login': 'Mohit',
-    'avatar_url':'../../assets/user1.jpg',
+    'avatar_url': '../../assets/user1.jpg',
     'url': 'Mohit@april.biz',
     'repos_url': '1',
     'repo2' : '2'
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
     {
 
     'login': 'Ankur',
-    'avatar_url':'../../assets/user3.jpg',
+    'avatar_url': '../../assets/user3.jpg',
     'url': 'NA',
     'repos_url': '1',
     'repo2' : '2'
@@ -55,18 +55,18 @@ export class AppComponent implements OnInit {
 
   onSearch(event:Event,text:String){
 console.log(text);
-    this.searchUser.getUsers(text).map(res => res).subscribe(users2 => {
+    this.searchUser.getUsers(text).subscribe(users2 => {
       // set items to json response
 
      this.data = users2;
      this.users= this.data.items;
       console.log(this.data.items);
-      //event.stopPropagation();
+      // event.stopPropagation();
       // initialize to page 1
-      
+
     });
     return false;
 
   }
-  
+
 }

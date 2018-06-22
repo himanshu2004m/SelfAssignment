@@ -10,9 +10,12 @@ export class SearchUserService {
 
     getUsers(inputName: String) {
 
-      //this.http.get(this.gitUrl + '/search/users?q=' + inputName);
+      // this.http.get(this.gitUrl + '/search/users?q=' + inputName);
 
-      return this.http.get("https://api.github.com/search/users?q=" + inputName);
+      return this.http.get('https://api.github.com/search/users?q=' + inputName);
     }
 
+    getRepos(inputUserName: String){
+      return this.http.get('https://api.github.com/users/' + inputUserName + '/repos');
+    }
 }

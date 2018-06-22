@@ -4,5 +4,6 @@ export class GitUsers {
     public url: string ;
     public repos_url: string ;
     public repo2: string ;
+    public repos?: Array<any>;
 }
 
